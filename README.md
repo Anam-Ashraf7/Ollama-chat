@@ -5,11 +5,12 @@
 
 
 
-# Project Name
-Long Description about project. This project do that. This project is awesome...
+# Llama Chat
+This repository houses the development of a chat UI designed specifically for Llama, a powerful large language model (LLM) capable of engaging in natural conversations. The goal is to create a user-friendly and interactive interface that allows users to seamlessly communicate with Llama and leverage its capabilities for various purposes.
 ## Team members
-1. [Name 1](https://github.com/TH-Activities/saturday-hack-night-template)
-2. [Name 2](https://github.com/TH-Activities/saturday-hack-night-template)
+1. [Alwin Sunil](https://github.com/TH-Activities/saturday-hack-night-template)
+2. [Mugilan S](https://github.com/TH-Activities/saturday-hack-night-template)
+3. [Anam Ashraf](https://github.com/TH-Activities/saturday-hack-night-template)
 ## Link to product walkthrough
 [link to video](Link Here)
 ## How it Works ?
