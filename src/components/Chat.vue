@@ -5,22 +5,21 @@ export default {
   data() {
     return {
       response: "",
-      prompt: "what is the name of the model",
-      model:"",
-      list : []
+      prompt: "hello",
+      model: "",
+      list: [],
     };
   },
   mounted() {
-    this.getAvailableModels()
+    this.getAvailableModels();
     this.fetchResponse();
-
   },
   methods: {
-    async getAvailableModels(){
-      const models = await ollama.list()
-      console.log(models)
-      for(let i=0, j=models.length; i<j; i++){
-        this.list.push(models[i].name)
+    async getAvailableModels() {
+      const models = await ollama.list();
+      console.log(models);
+      for (let i = 0, j = models.length; i < j; i++) {
+        this.list.push(models[i].name);
       }
     },
     async fetchResponse() {
@@ -31,7 +30,6 @@ export default {
           messages: [message],
           stream: true,
         });
-        console.log(response);
         for await (const part of response) {
           this.response += part.message.content;
         }
@@ -39,7 +37,6 @@ export default {
         console.error("Error:", error);
         console.log(error);
         this.response += "Error: " + error.message;
-
       }
     },
   },
