@@ -1,10 +1,11 @@
 <script setup>
-import HelloWorld from "./components/HelloWorld.vue";
+import Chat from "./components/Chat.vue";
 import Navbar from "./components/Navbar.vue";
 </script>
 
 <template>
-  <div></div>
   <Navbar />
-  <HelloWorld msg="Vite + Vue" />
+  <div class="flex gap-4">
+    <Chat />
+  </div>
 </template>
