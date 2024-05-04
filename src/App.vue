@@ -5,7 +5,5 @@ import Navbar from "./components/Navbar.vue";
 
 <template>
   <Navbar />
-  <div class="flex gap-4">
-    <Chat />
-  </div>
+  <Chat />
 </template>
