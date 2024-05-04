@@ -23,7 +23,7 @@ export default {
       } catch (error) {
         console.error("Error fetching available models:", error);
       }
-      console.log(this.list)
+      console.log(this.list);
     },
     async fetchResponse() {
       try {
@@ -59,66 +59,65 @@ export default {
 </script>
 
 <template>
-  <div
-    class="p-4 h-[calc(100vw-4rem)] w-full overflow-y-auto overflow-x-hidden"
-  >
-    <div class="chat chat-start">
-      <div class="chat-image avatar">
-        <div class="w-10 rounded-full">
-          <img
-            class="bg-white !object-contain"
-            alt="Tailwind CSS chat bubble component"
-            src="https://ollama.com/public/ollama.png"
+  <div class="flex flex-col justify-between h-full px-40">
+    <div class="p-4 overflow-y-auto overflow-x-hidden">
+      <div class="chat chat-start w-full">
+        <div class="chat-image avatar">
+          <div class="w-10 rounded-full">
+            <img
+              class="bg-white !object-contain"
+              alt="Tailwind CSS chat bubble component"
+              src="https://ollama.com/public/ollama.png"
             />
-        </div>
-      </div>
-      <div class="flex flex-col gap-2 w-full">
-        <div
-          v-for="(item, index) in conversation"
-          :key="index"
-          class="flex flex-col gap-2 w-full"
-        >
-          <div class="chat chat-end">
-            <span v-if="item.prompt" class="chat-bubble">{{
-              item.prompt
-            }}</span>
           </div>
-          <div class="chat chat-start">
-            <span v-if="item.response" class="chat-bubble">{{
-              item.response
-            }}</span>
+        </div>
+        <div class="flex flex-col gap-2 w-full">
+          <div
+            v-for="(item, index) in conversation"
+            :key="index"
+            class="flex flex-col gap-2 w-full"
+          >
+            <div class="chat chat-end">
+              <span v-if="item.prompt" class="chat-bubble">{{
+                item.prompt
+              }}</span>
+            </div>
+            <div class="chat chat-start">
+              <span v-if="item.response" class="chat-bubble">{{
+                item.response
+              }}</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <div class="p-4 flex justify-center gap-2">
+      <input
+        v-model="newMessage"
+        type="text"
+        placeholder="Message here..."
+        class="input input-bordered w-full sticky bottom-0"
+        @keyup.enter="handleNewMessage"
+      />
+      <button class="btn btn-primary">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-send-horizontal"
+        >
+          <path d="m3 3 3 9-3 9 19-9Z" />
+          <path d="M6 12h16" />
+        </svg>
+      </button>
+    </div>
   </div>
-  <div class="p-4 flex justify-center gap-2">
-    <input
-      v-model="newMessage"
-      type="text"
-      placeholder="Message here..."
-      class="input input-bordered w-full sticky bottom-0"
-      @keyup.enter="handleNewMessage"
-    />
-    <button class="btn btn-primary">
-      <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      class="lucide lucide-send-horizontal"
-      >
-      <path d="m3 3 3 9-3 9 19-9Z" />
-      <path d="M6 12h16" />
-    </svg>
-  </button>
-</div>
-</div>
 </template>
 
 <style scoped></style>
