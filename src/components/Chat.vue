@@ -1,3 +1,36 @@
+<script>
+import ollama from "ollama/browser";
+
+export default {
+  data() {
+    return {
+      response: "",
+      prompt: "What is your name?",
+    };
+  },
+  mounted() {
+    this.fetchResponse();
+  },
+  methods: {
+    async fetchResponse() {
+      try {
+        const message = { role: "user", content: this.prompt };
+        const response = await ollama.chat({
+          model: "gemma:2b",
+          messages: [message],
+          stream: true,
+        });
+        for await (const part of response) {
+          this.response += part.message.content;
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    },
+  },
+};
+</script>
+
 <template>
   <div class="p-4 h-full w-full">
     <div class="chat chat-start">
@@ -11,7 +44,7 @@
         </div>
       </div>
       <div class="chat-bubble">
-        Hey there! I'm Ollama, a chatbot that helps you with your tasks.
+        {{ response }}
       </div>
     </div>
   </div>
