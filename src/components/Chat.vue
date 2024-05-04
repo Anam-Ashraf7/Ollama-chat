@@ -5,26 +5,41 @@ export default {
   data() {
     return {
       response: "",
-      prompt: "What is your name?",
+      prompt: "what is the name of the model",
+      model:"",
+      list : []
     };
   },
   mounted() {
+    this.getAvailableModels()
     this.fetchResponse();
+
   },
   methods: {
+    async getAvailableModels(){
+      const models = await ollama.list()
+      console.log(models)
+      for(let i=0, j=models.length; i<j; i++){
+        this.list.push(models[i].name)
+      }
+    },
     async fetchResponse() {
       try {
         const message = { role: "user", content: this.prompt };
         const response = await ollama.chat({
-          model: "gemma:2b",
+          model: "llama3",
           messages: [message],
           stream: true,
         });
+        console.log(response);
         for await (const part of response) {
           this.response += part.message.content;
         }
       } catch (error) {
         console.error("Error:", error);
+        console.log(error);
+        this.response += "Error: " + error.message;
+
       }
     },
   },
