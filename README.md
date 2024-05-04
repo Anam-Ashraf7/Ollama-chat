@@ -12,21 +12,44 @@ This repository houses the development of a chat UI designed specifically for [O
 
 ## Link to product walkthrough
 
-[link to video](Link Here)
+[https://drive.google.com/file/d/1I-fLd7hF-lSWGvIXzAq0kCP9yWLLtEON/view?usp=sharing]
 
 ## How it Works ?
 
-1. Explaining the working of project
-2. Embed video of project demo
+1. A chat UI for Ollama, enabling local use of large language models (LLMs) on your device seamless.
+2. Provides an intuitive interface to interact with LLM's which are installed through Ollama.
+3. Utilizes ollama-js library for seamless communication between UI and Ollama application providing a smooth user experience.
 
 ## Libraries used
 
-Library Name - Version
-
-## How to configure
-
-Instructions for setting up project
+- [Vue.js](https://vuejs.org/)
+- [Vite](https://vitejs.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Ollama JS](https://github.com/ollama/ollama-js)
 
 ## How to Run
 
-Instructions for running
+### Prerequisites
+
+- Git (https://git-scm.com/)
+- Node.js (https://nodejs.org/en)
+
+### Installation of Ollama
+
+- Install ollama on your device from [ollama.com](https://ollama.com/download)
+- Download preferred model using ollama `ollama run llamm3`
+- Replace `llama3` with the model you want to use, instructions are [here](https://github.com/ollama/ollama?tab=readme-ov-file#quickstart)
+
+### Running Ollama Chat
+
+Git clone the repository
+
+`git clone https://github.com/Anam-Ashraf7/Strix`
+
+Install dependencies
+`npm install`
+
+Start the development server
+`npm run dev`
+
+Go to http://localhost:5173/ to start using the chat UI.
