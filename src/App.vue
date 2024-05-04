@@ -5,6 +5,7 @@ import SideBar from "./components/SideBar.vue";
 </script>
 
 <template>
+
   <Navbar />
   <div class="flex h-full">
     <SideBar/>
