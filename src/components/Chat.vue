@@ -1,5 +1,17 @@
 <script>
 import ollama from "ollama/browser";
+import * as marked from 'marked';
+import hljs from 'highlight.js';
+
+marked.setOptions({
+  highlight: (code, lang) => {
+    if (hljs.getLanguage(lang)) {
+      return hljs.highlight(code, { language: lang }).value;
+    } else {
+      return hljs.highlightAuto(code).value;
+    }
+  },
+});
 
 export default {
   props: {
@@ -34,6 +46,11 @@ export default {
         this.list.push(models[i].name);
       }
     },
+    convertToMarkdown(text){
+      console.log(marked.parse(text))
+      return marked.parse(text)
+      // return marked(text)
+    },
     async fetchResponse() {
       try {
         if (this.model) {
@@ -51,6 +68,7 @@ export default {
             this.conversation[this.conversation.length - 1].response +=
               part.message.content;
           }
+          this.reponseMarkdown()
         } else {
           this.warning = "Please select a model first.";
         }
@@ -95,9 +113,7 @@ export default {
               }}</span>
             </div>
             <div class="chat chat-start">
-              <span v-if="item.response" class="chat-bubble">{{
-                item.response
-              }}</span>
+              <span v-if="item.response" class="chat-bubble" v-html="convertToMarkdown(item.response)" ></span>
               <span
                 v-else-if="!item.prompt && !item.response"
                 class="chat-bubble"
