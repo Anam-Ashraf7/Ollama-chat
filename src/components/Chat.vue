@@ -13,7 +13,6 @@ export default {
   mounted() {
     this.getAvailableModels()
     this.fetchResponse();
-
   },
   methods: {
     async getAvailableModels(){
@@ -22,12 +21,13 @@ export default {
       for(let i=0, j=models.length; i<j; i++){
         this.list.push(models[i].name)
       }
+      console.log(this.list)
     },
     async fetchResponse() {
       try {
         const message = { role: "user", content: this.prompt };
         const response = await ollama.chat({
-          model: "llama3",
+          model: "gemma:2b",
           messages: [message],
           stream: true,
         });
@@ -47,8 +47,8 @@ export default {
 </script>
 
 <template>
-  <div class="flex flex-col w-full">
-    <div class="flex flex-col items-center p-4 h-full w-2/3">
+  <div class="flex flex-col w-full px-40">
+    <div class="flex flex-col p-4 h-full w-full">
       <div class="chat chat-start">
         <div class="chat-image avatar">
           <div class="w-10 rounded-full">
@@ -68,7 +68,7 @@ export default {
     <input
     type="text"
     placeholder="Message here..."
-    class="input input-bordered w-2/3 sticky bottom-0"
+    class="input input-bordered w-full sticky bottom-0"
     />
     
     <button class="btn btn-primary">
