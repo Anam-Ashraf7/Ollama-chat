@@ -12,7 +12,7 @@ This repository houses the development of a chat UI designed specifically for [O
 
 ## Link to product walkthrough
 
-[link to video](Link Here)
+[https://drive.google.com/file/d/1I-fLd7hF-lSWGvIXzAq0kCP9yWLLtEON/view?usp=sharing]
 
 ## How it Works ?
 
