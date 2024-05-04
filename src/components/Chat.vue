@@ -23,6 +23,7 @@ export default {
       } catch (error) {
         console.error("Error fetching available models:", error);
       }
+      console.log(this.list)
     },
     async fetchResponse() {
       try {
@@ -68,7 +69,7 @@ export default {
             class="bg-white !object-contain"
             alt="Tailwind CSS chat bubble component"
             src="https://ollama.com/public/ollama.png"
-          />
+            />
         </div>
       </div>
       <div class="flex flex-col gap-2 w-full">
@@ -91,7 +92,7 @@ export default {
       </div>
     </div>
   </div>
-  <div class="p-4 flex gap-2">
+  <div class="p-4 flex justify-center gap-2">
     <input
       v-model="newMessage"
       type="text"
@@ -101,22 +102,23 @@ export default {
     />
     <button class="btn btn-primary">
       <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="lucide lucide-send-horizontal"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="lucide lucide-send-horizontal"
       >
-        <path d="m3 3 3 9-3 9 19-9Z" />
-        <path d="M6 12h16" />
-      </svg>
-    </button>
-  </div>
+      <path d="m3 3 3 9-3 9 19-9Z" />
+      <path d="M6 12h16" />
+    </svg>
+  </button>
+</div>
+</div>
 </template>
 
 <style scoped></style>
