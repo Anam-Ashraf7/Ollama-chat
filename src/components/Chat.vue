@@ -2,45 +2,57 @@
 import ollama from "ollama/browser";
 
 export default {
+  props: {
+    model: String, // Receive the model prop
+  },
   data() {
     return {
       isOllamaRunning: true,
-      model: "",
       list: [],
       conversation: [{ prompt: "", response: "" }],
       newMessage: "",
+      warning: "",
     };
   },
   mounted() {
     this.getAvailableModels();
+    this.fetchResponse();
+  },
+  watch: {
+    model(newModel) {
+      console.log("Selected model:", newModel); // Log the selected model
+      this.warning = "Model: " + newModel
+      this.fetchResponse();
+      
+    },
   },
   methods: {
     async getAvailableModels() {
-      try {
-        const models = await ollama.list();
-        console.log(models);
-        this.list = models.map((model) => model.name);
-      } catch (error) {
-        console.error("Error fetching available models:", error);
+      const models = await ollama.list();
+      console.log(models);
+      for (let i = 0, j = models.length; i < j; i++) {
+        this.list.push(models[i].name);
       }
-      console.log(this.list);
     },
     async fetchResponse() {
       try {
-        const response = await ollama.chat({
-          model: "gemma:2b",
-          messages: [
-            {
-              role: "user",
-              content: this.conversation[this.conversation.length - 1].prompt,
-            },
-          ],
-          stream: true,
-        });
-
-        for await (const part of response) {
-          this.conversation[this.conversation.length - 1].response +=
-            part.message.content;
+        if (this.model) {
+          const response = await ollama.chat({
+            model: this.model,
+            messages: [
+              {
+                role: "user",
+                content: this.conversation[this.conversation.length - 1].prompt,
+              },
+            ],
+            stream: true,
+          });
+          for await (const part of response) {
+            this.conversation[this.conversation.length - 1].response +=
+              part.message.content;
+          }
+        } else {
+          this.warning = "Please select a model first.";
         }
       } catch (error) {
         console.error("Error fetching response:", error);
@@ -86,6 +98,11 @@ export default {
               <span v-if="item.response" class="chat-bubble">{{
                 item.response
               }}</span>
+              <span
+                v-else-if="!item.prompt && !item.response"
+                class="chat-bubble"
+                >{{ warning }}</span
+              >
             </div>
           </div>
         </div>

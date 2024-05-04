@@ -18,13 +18,12 @@ export default {
       console.log(models);
       for (let i = 0, j = models.models.length; i < j; i++) {
         const modelName = models.models[i].name;
-        const separatedName = modelName.split(":");
-        this.list.push(separatedName[0]);
+        this.list.push(modelName);
       }
       console.log(this.list);
     },
     selectModel(model) {
-      this.$emit("modelSelected", model); // Emit the event with the selected model
+      this.$emit('modelSelected', model); // Emit the event with the selected model
       this.isDropdownOpen = false; // Close the dropdown
     },
     toggleDropdown() {
