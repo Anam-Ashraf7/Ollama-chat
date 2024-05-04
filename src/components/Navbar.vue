@@ -1,4 +1,29 @@
-import Sidebar from './Sidebar.vue';
+<script>
+import ollama from "ollama/browser";
+
+export default {
+  data() {
+    return {
+      list: [],
+    };
+  },
+  mounted() {
+    this.getAvailableModels();
+  },
+  methods: {
+    async getAvailableModels() {
+      const models = await ollama.list();
+      console.log(models);
+      for (let i = 0, j = models.models.length; i < j; i++) {
+        const modelName = models.models[i].name;
+        const separatedName = modelName.split(":");
+        this.list.push(separatedName[0]);
+      }
+      console.log(this.list);
+    },
+  },
+};
+</script>
 <template>
   <!-- <div> -->
     <div class="navbar bg-base-100">

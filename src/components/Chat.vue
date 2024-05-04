@@ -31,7 +31,6 @@ export default {
           messages: [message],
           stream: true,
         });
-        console.log(response);
         for await (const part of response) {
           this.response += part.message.content;
         }
@@ -39,7 +38,6 @@ export default {
         console.error("Error:", error);
         console.log(error);
         this.response += "Error: " + error.message;
-
       }
     },
   },
